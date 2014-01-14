@@ -1,6 +1,9 @@
 
 package com.donnfelker.android.bootstrap.core;
 
+import android.util.Log;
+
+import com.donnfelker.android.bootstrap.util.Ln;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
 import com.google.gson.Gson;
@@ -200,6 +203,8 @@ public class BootstrapService {
         try {
             final HttpRequest request = execute(HttpRequest.get(URL_NEWS));
             final NewsWrapper response = fromJson(request, NewsWrapper.class);
+            Log.w(Constants.IMeetapp.Log, "This is my log:");
+            Log.w(Constants.IMeetapp.Log, "News Response = " + response.results.get(0).getContent());
             if (response != null && response.results != null) {
                 return response.results;
             }

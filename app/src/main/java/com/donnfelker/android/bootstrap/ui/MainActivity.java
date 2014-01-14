@@ -196,6 +196,10 @@ public class MainActivity extends BootstrapFragmentActivity {
         final Intent i = new Intent(this, BootstrapTimerActivity.class);
         startActivity(i);
     }
+    private void navigateToSocial() {
+        final Intent i = new Intent(this, SocialActivity.class);
+        startActivity(i);
+    }
 
     @Subscribe
     public void onNavigationItemSelected(NavItemSelectedEvent event) {
@@ -210,6 +214,10 @@ public class MainActivity extends BootstrapFragmentActivity {
             case 1:
                 // Timer
                 navigateToTimer();
+                break;
+            case 2:
+                // SocialActivity
+                navigateToSocial();
                 break;
         }
     }

@@ -77,6 +77,10 @@ public final class Constants {
 
     }
 
+    public interface IMeetapp{
+        public static final String Log = "com.ismet.app.meetapp";
+    }
+
 
     public static final class Extra {
         private Extra() {}

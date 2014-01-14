@@ -12,6 +12,7 @@ import com.donnfelker.android.bootstrap.ui.CheckInsListFragment;
 import com.donnfelker.android.bootstrap.ui.NavigationDrawerFragment;
 import com.donnfelker.android.bootstrap.ui.NewsActivity;
 import com.donnfelker.android.bootstrap.ui.NewsListFragment;
+import com.donnfelker.android.bootstrap.ui.SocialActivity;
 import com.donnfelker.android.bootstrap.ui.UserActivity;
 import com.donnfelker.android.bootstrap.ui.UserListFragment;
 import com.squareup.otto.Bus;
@@ -38,6 +39,7 @@ import dagger.Provides;
                 NewsActivity.class,
                 NewsListFragment.class,
                 UserActivity.class,
+                SocialActivity.class,
                 UserListFragment.class,
                 TimerService.class
         }
