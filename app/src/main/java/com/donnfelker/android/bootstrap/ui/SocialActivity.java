@@ -33,6 +33,9 @@ public class SocialActivity extends BootstrapActivity {
         preferenceList.add(new Preference("Experience", 3, 5));
         preferenceList.add(new Preference("School", 3, 5));
 
+        //Seekbar
+       // volumeControl = (SeekBar) findViewById(R.id.);
+
         ListView customListView = (ListView) findViewById(R.id.social_list_view);
         PreferenceListAdapter preferenceListAdapter = new PreferenceListAdapter(this, preferenceList);
         customListView.setAdapter(preferenceListAdapter);
