@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.Constants;
 import com.donnfelker.android.bootstrap.core.Preference;
-import com.donnfelker.android.bootstrap.util.Strings;
 
 import java.util.List;
 
@@ -56,20 +55,15 @@ public class PreferenceListAdapter extends BaseAdapter {
         else
             vi = convertView;
         TextView textLabel = null; // preference name
-        TextView textValue = null; // preference name
         SeekBar prefcontrol = null;
         if (vi != null) {
             textLabel = (TextView) vi.findViewById(R.id.social_item_title);
-            textValue = (TextView) vi.findViewById(R.id.social_item_value);
             prefcontrol = (SeekBar) vi.findViewById(R.id.social_item_seekbar);
         }
         Preference preference = preferenceList.get(position);
 
         if (textLabel != null) {
             textLabel.setText(preference.getName());
-        }
-        if (textValue != null) {
-            textValue.setText("0");
         }
         if (prefcontrol != null) {
             prefcontrol.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
