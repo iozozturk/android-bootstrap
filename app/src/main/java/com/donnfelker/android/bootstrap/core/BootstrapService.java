@@ -9,7 +9,9 @@ import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
+import com.squareup.picasso.Loader;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Collections;
@@ -154,6 +156,7 @@ public class BootstrapService {
          * request.basic("myusername", "mypassword");
          */
 
+        Log.d(Constants.IMeetapp.Log, "Request is ready: " + request.toString());
         return request;
     }
 
@@ -184,6 +187,8 @@ public class BootstrapService {
         try {
             final HttpRequest request = execute(HttpRequest.get(URL_USERS));
             final UsersWrapper response = fromJson(request, UsersWrapper.class);
+            Log.w(Constants.IMeetapp.Log, "Getting users:");
+            Log.w(Constants.IMeetapp.Log, "User Response = " + GSON.toJson(response));
             if (response != null && response.results != null) {
                 return response.results;
             }
@@ -203,8 +208,8 @@ public class BootstrapService {
         try {
             final HttpRequest request = execute(HttpRequest.get(URL_NEWS));
             final NewsWrapper response = fromJson(request, NewsWrapper.class);
-            Log.w(Constants.IMeetapp.Log, "This is my log:");
-            Log.w(Constants.IMeetapp.Log, "News Response = " + response.results.get(0).getContent());
+            Log.w(Constants.IMeetapp.Log, "Getting news:");
+            Log.w(Constants.IMeetapp.Log, "News Response = " + GSON.toJson(response));
             if (response != null && response.results != null) {
                 return response.results;
             }
@@ -224,6 +229,8 @@ public class BootstrapService {
         try {
             final HttpRequest request = execute(HttpRequest.get(URL_CHECKINS));
             final CheckInWrapper response = fromJson(request, CheckInWrapper.class);
+            Log.w(Constants.IMeetapp.Log, "Getting Checkins:");
+            Log.w(Constants.IMeetapp.Log, "Checkin Response = " + GSON.toJson(response));
             if (response != null && response.results != null) {
                 return response.results;
             }

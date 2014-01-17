@@ -53,7 +53,7 @@ public final class Constants {
         /**
          * List Users URL
          */
-        public static final String URL_USERS = URL_BASE + "/1/users";
+        public static final String URL_USERS = URL_BASE + "/1/classes/actual";//TODO Change
 
         /**
          * List News URL
@@ -65,8 +65,8 @@ public final class Constants {
          */
         public static final String URL_CHECKINS = URL_BASE + "/1/classes/Locations";
 
-        public static final String PARSE_APP_ID = "zHb2bVia6kgilYRWWdmTiEJooYA17NnkBSUVsr4H";
-        public static final String PARSE_REST_API_KEY = "N2kCY1T3t3Jfhf9zpJ5MCURn3b25UpACILhnf5u9";
+        public static final String PARSE_APP_ID = "r3M4SM1kw5Hm0QK5BQzoa11oXnT1EAxFW6XQojhh";
+        public static final String PARSE_REST_API_KEY = "daNcA5UsgMFV2n37swJ5gbwZjkAQxAvDj9LcyGbK";
         public static final String HEADER_PARSE_REST_API_KEY = "X-Parse-REST-API-Key";
         public static final String HEADER_PARSE_APP_ID = "X-Parse-Application-Id";
         public static final String CONTENT_TYPE_JSON = "application/json";
@@ -79,6 +79,18 @@ public final class Constants {
 
     public interface IMeetapp{
         public static final String Log = "com.ismet.app.meetapp";
+
+        public static final String METU = "metu";
+        public static final String MIT = "mit";
+        public static final String YALE = "yale";
+        public static final String DUKE = "duke";
+        public static final String CMU = "cmu";
+
+        public static final String JAVA = "java";
+        public static final String CPLUSPLUS = "c++";
+        public static final String C = "c";
+        public static final String EXPERIENCE = "experience";
+        public static final String SCHOOL = "school";
     }
 
 

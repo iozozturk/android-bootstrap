@@ -3,6 +3,8 @@ package com.donnfelker.android.bootstrap.core;
 import android.text.TextUtils;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class User implements Serializable {
 
@@ -17,6 +19,43 @@ public class User implements Serializable {
     protected String gravatarId;
     protected String avatarUrl;
 
+    public String getIsMale() {
+        return isMale;
+    }
+
+    public void setIsMale(String isMale) {
+        this.isMale = isMale;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    protected String email;
+    protected Map technical ;
+    protected String isMale;
+
+    public User(){
+        technical = new HashMap<String, Object>();
+        technical.put(Constants.IMeetapp.C, new Preference(Constants.IMeetapp.C,0,5));
+        technical.put(Constants.IMeetapp.JAVA, new Preference(Constants.IMeetapp.JAVA,0,5));
+        technical.put(Constants.IMeetapp.CPLUSPLUS, new Preference(Constants.IMeetapp.CPLUSPLUS,0,5));
+        technical.put(Constants.IMeetapp.EXPERIENCE, new Preference(Constants.IMeetapp.EXPERIENCE,0,5));
+        technical.put(Constants.IMeetapp.SCHOOL, "");
+    }
+
+
+    public Map getTechnical() {
+        return technical;
+    }
+
+    public void setTechnical(Map technical) {
+        this.technical = technical;
+    }
 
     public String getUsername() {
         return username;
