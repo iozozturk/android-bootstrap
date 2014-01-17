@@ -14,6 +14,7 @@ import com.squareup.picasso.Loader;
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
+import java.net.URLEncoder;
 import java.util.Collections;
 import java.util.List;
 
@@ -185,7 +186,8 @@ public class BootstrapService {
      */
     public List<User> getUsers() throws IOException {
         try {
-            final HttpRequest request = execute(HttpRequest.get(URL_USERS));
+            final HttpRequest request = execute(HttpRequest.get(URL_USERS + "?" +
+                    "" + URLEncoder.encode("limit=500", "UTF-8")));
             final UsersWrapper response = fromJson(request, UsersWrapper.class);
             Log.w(Constants.IMeetapp.Log, "Getting users:");
             Log.w(Constants.IMeetapp.Log, "User Response = " + GSON.toJson(response));

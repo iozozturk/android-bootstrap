@@ -8,6 +8,8 @@ import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.User;
 import com.squareup.picasso.Picasso;
 
+import java.util.Map;
+
 import butterknife.InjectView;
 
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.USER;
@@ -16,6 +18,14 @@ public class UserActivity extends BootstrapActivity {
 
     @InjectView(R.id.iv_avatar) protected ImageView avatar;
     @InjectView(R.id.tv_name) protected TextView name;
+    @InjectView(R.id.user_name_value) protected TextView user_name;
+    @InjectView(R.id.user_school_value) protected TextView user_school;
+    @InjectView(R.id.user_email_value) protected TextView user_email;
+    @InjectView(R.id.user_c_value) protected TextView user_c_value;
+    @InjectView(R.id.user_cplusplus_value) protected TextView user_cplusplus_value;
+    @InjectView(R.id.user_java_value) protected TextView user_java_value;
+    @InjectView(R.id.user_experience_value) protected TextView user_experience_value;
+    @InjectView(R.id.user_schoolgrade_value) protected TextView user_schoolgrade_value;
 
     private User user;
 
@@ -36,7 +46,16 @@ public class UserActivity extends BootstrapActivity {
                 .placeholder(R.drawable.gravatar_icon)
                 .into(avatar);
 
-        name.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
+        Map technical = user.getTechnical();
+
+        user_name.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
+        user_email.setText(user.getEmail());
+        user_school.setText((CharSequence) technical.get("schoolName"));
+        user_schoolgrade_value.setText((CharSequence) technical.get("schoolGrade"));
+        user_c_value.setText((CharSequence) technical.get("c"));
+        user_cplusplus_value.setText((CharSequence) technical.get("cpp"));
+        user_java_value.setText((CharSequence) technical.get("java"));
+        user_experience_value.setText((CharSequence) technical.get("xp"));
 
     }
 

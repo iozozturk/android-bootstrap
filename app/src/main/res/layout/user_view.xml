@@ -27,91 +27,65 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.08">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Name: "
-            android:textColor="@color/abc_search_url_text_selected"
+            android:textColor="@color/table_text_selector"
             android:id="@+id/user_name" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text=""
-            android:textColor="@color/abc_search_url_text_selected"
+            android:textColor="@color/table_text_selector"
             android:id="@+id/user_name_value" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.08">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/abc_search_url_text_selected"
-            android:text="Surname: "
-            android:id="@+id/user_surname" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/abc_search_url_text_selected"
-            android:text="Surname:"
-            android:id="@+id/user_surname_value" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.08">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/abc_search_url_text_selected"
+            android:textColor="@color/table_text_selector"
             android:text="School: "
             android:id="@+id/user_school" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/abc_search_url_text_selected"
+            android:textColor="@color/table_text_selector"
             android:id="@+id/user_school_value" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.08">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/abc_search_url_text_selected"
+            android:textColor="@color/table_text_selector"
             android:text="Email: "
             android:id="@+id/user_email" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/abc_search_url_text_selected"
+            android:textColor="@color/table_text_selector"
             android:id="@+id/user_email_value" />
     </LinearLayout>
 
@@ -120,13 +94,13 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.08">
+        android:layout_weight="0.0">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/abc_search_url_text_selected"
+            android:textColor="@color/table_text_selector"
             android:text="Technical: "
             android:id="@+id/user_technical" />
     </LinearLayout>
@@ -136,12 +110,14 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.08">
+        android:layout_weight="0.00"
+        android:layout_gravity="right">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/table_text_selector"
             android:text="C "
             android:id="@+id/user_c" />
 
@@ -149,6 +125,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/table_text_selector"
             android:id="@+id/user_c_value" />
     </LinearLayout>
 
@@ -157,12 +134,14 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.08">
+        android:layout_weight="0.00"
+        android:layout_gravity="right">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/table_text_selector"
             android:text="C++ "
             android:id="@+id/user_cplusplus" />
 
@@ -170,6 +149,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/table_text_selector"
             android:id="@+id/user_cplusplus_value" />
     </LinearLayout>
 
@@ -178,12 +158,14 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.08">
+        android:layout_weight="0.00"
+        android:layout_gravity="right">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/table_text_selector"
             android:text="Java "
             android:id="@+id/user_java" />
 
@@ -191,6 +173,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/table_text_selector"
             android:id="@+id/user_java_value" />
     </LinearLayout>
 
@@ -198,12 +181,14 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.08">
+        android:layout_weight="0.00"
+        android:layout_gravity="right">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/table_text_selector"
             android:text="Experience "
             android:id="@+id/user_experience" />
 
@@ -211,6 +196,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/table_text_selector"
             android:id="@+id/user_experience_value" />
     </LinearLayout>
 
@@ -218,12 +204,14 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.08">
+        android:layout_weight="0.00"
+        android:layout_gravity="right">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/table_text_selector"
             android:text="SchoolGrade "
             android:id="@+id/user_schoolgrade" />
 
@@ -231,6 +219,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/table_text_selector"
             android:id="@+id/user_schoolgrade_value" />
     </LinearLayout>
 
