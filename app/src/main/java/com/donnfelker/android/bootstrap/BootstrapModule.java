@@ -9,6 +9,7 @@ import com.donnfelker.android.bootstrap.core.TimerService;
 import com.donnfelker.android.bootstrap.ui.BootstrapTimerActivity;
 import com.donnfelker.android.bootstrap.ui.MainActivity;
 import com.donnfelker.android.bootstrap.ui.CheckInsListFragment;
+import com.donnfelker.android.bootstrap.ui.MatchedUsersActivity;
 import com.donnfelker.android.bootstrap.ui.NavigationDrawerFragment;
 import com.donnfelker.android.bootstrap.ui.NewsActivity;
 import com.donnfelker.android.bootstrap.ui.NewsListFragment;
@@ -40,6 +41,7 @@ import dagger.Provides;
                 NewsListFragment.class,
                 UserActivity.class,
                 SocialActivity.class,
+                MatchedUsersActivity.class,
                 UserListFragment.class,
                 TimerService.class
         }

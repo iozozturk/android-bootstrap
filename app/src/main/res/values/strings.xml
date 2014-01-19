@@ -57,6 +57,10 @@
     <string name="mustHave">Must Have</string>
     <string name="find">GO!</string>
 
+    <!-- Matched Users Activity -->
+    <string name="matched_users">Matched Users</string>
+    <string name="matched_users_title">Matched Users</string>
+
 
 
 </resources>

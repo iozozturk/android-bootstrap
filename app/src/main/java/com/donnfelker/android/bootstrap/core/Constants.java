@@ -80,11 +80,9 @@ public final class Constants {
     public interface IMeetapp{
         public static final String Log = "com.ismet.app.meetapp";
 
-        public static final String METU = "metu";
-        public static final String MIT = "mit";
-        public static final String YALE = "yale";
-        public static final String DUKE = "duke";
-        public static final String CMU = "cmu";
+        public static final String PREFERENCES = "preferences";
+        public static final String USERS = "users";
+
 
         public static final String JAVA = "java";
         public static final String CPLUSPLUS = "c++";

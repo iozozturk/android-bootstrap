@@ -2,6 +2,7 @@ package com.donnfelker.android.bootstrap.ui;
 
 import android.accounts.OperationCanceledException;
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.Loader;

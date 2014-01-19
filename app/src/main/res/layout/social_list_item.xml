@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/social_item"
-    android:weightSum="1">
+    android:weightSum="1"
+    style="@style/ListItem">
 
     <LinearLayout
         android:orientation="horizontal"

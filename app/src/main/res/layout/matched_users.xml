@@ -3,32 +3,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/social_layout"
+    android:id="@+id/matched_users_layout"
     android:weightSum="1">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/preferences"
+        android:text="@string/matched_users"
         android:textColor="@color/abc_search_url_text_pressed"
-        android:id="@+id/preferences"
+        android:id="@+id/matched_users"
         android:layout_gravity="center_horizontal" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="378dp"
-        android:id="@+id/social_list_view"
+        android:id="@+id/matched_users_list_view"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.31"
         style="@style/ListView"/>
 
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="@string/find"
-        android:id="@+id/buttonGo"
-        android:layout_gravity="center_horizontal"
-        style="@style/BootstrapButton"/>
 
 </LinearLayout>

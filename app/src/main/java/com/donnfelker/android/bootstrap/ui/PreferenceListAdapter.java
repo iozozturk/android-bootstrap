@@ -66,6 +66,8 @@ public class PreferenceListAdapter extends BaseAdapter {
             textLabel.setText(preference.getName());
         }
         if (prefcontrol != null) {
+            prefcontrol.setProgress(preference.getVal());
+            prefcontrol.setId(R.id.SEEKBAR + position);
             prefcontrol.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 int progress;
                 TextView textValue_ = (TextView) vi.findViewById(R.id.social_item_value);
