@@ -94,8 +94,26 @@ public class MatchingUtils {
             }
         });
 
+        for (User user : userList) {
+            int[] userTechnicals = convertUserToArray(user);
+            try {
+                distance = DistanceUtils.mahalanobisDistance(preferenceTechnicals, userTechnicals);
+                user.setDistance(distance);
+                mahalanobisUserList.add(user);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        Collections.sort(mahalanobisUserList, new Comparator<User>() {
+            @Override
+            public int compare(User lhs, User rhs) {
+                return (lhs.getDistance() > rhs.getDistance() ? -1 : (lhs.getDistance() == rhs.getDistance() ? 0 : 1));
+            }
+        });
+
         euclideanUserList = euclideanUserList.subList(0,5);
         manhattanUserList =  manhattanUserList.subList(0,5);
+        mahalanobisUserList = mahalanobisUserList.subList(0,5);
 
 
         matchedUsers.put(MatchingUtils.EUCLIDEAN,  euclideanUserList);
