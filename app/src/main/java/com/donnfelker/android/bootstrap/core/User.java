@@ -36,15 +36,24 @@ public class User implements Serializable {
     }
 
     protected String email;
-    protected Map technical ;
+    protected Map technical;
     protected String isMale;
+    protected double distance;
 
-    public User(){
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    public User() {
         technical = new HashMap<String, Object>();
-        technical.put(Constants.IMeetapp.C, new Preference(Constants.IMeetapp.C,0,5));
-        technical.put(Constants.IMeetapp.JAVA, new Preference(Constants.IMeetapp.JAVA,0,5));
-        technical.put(Constants.IMeetapp.CPLUSPLUS, new Preference(Constants.IMeetapp.CPLUSPLUS,0,5));
-        technical.put(Constants.IMeetapp.EXPERIENCE, new Preference(Constants.IMeetapp.EXPERIENCE,0,5));
+        technical.put(Constants.IMeetapp.C, new Preference(Constants.IMeetapp.C, 0, 5));
+        technical.put(Constants.IMeetapp.JAVA, new Preference(Constants.IMeetapp.JAVA, 0, 5));
+        technical.put(Constants.IMeetapp.CPLUSPLUS, new Preference(Constants.IMeetapp.CPLUSPLUS, 0, 5));
+        technical.put(Constants.IMeetapp.EXPERIENCE, new Preference(Constants.IMeetapp.EXPERIENCE, 0, 5));
         technical.put(Constants.IMeetapp.SCHOOL, "");
     }
 

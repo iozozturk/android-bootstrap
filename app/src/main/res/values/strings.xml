@@ -60,6 +60,9 @@
     <!-- Matched Users Activity -->
     <string name="matched_users">Matched Users</string>
     <string name="matched_users_title">Matched Users</string>
+    <string name="matched_users_euclidean">Euclidean Results</string>
+    <string name="matched_users_manhattan">Manhattan Results</string>
+    <string name="matched_users_mahalanobis">Mahalanobis Results</string>
 
 
 

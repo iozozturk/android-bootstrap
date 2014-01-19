@@ -81,14 +81,17 @@ public final class Constants {
         public static final String Log = "com.ismet.app.meetapp";
 
         public static final String PREFERENCES = "preferences";
+        public static final int PREFERENCE_COUNT = 5;
+
         public static final String USERS = "users";
 
 
         public static final String JAVA = "java";
-        public static final String CPLUSPLUS = "c++";
+        public static final String CPLUSPLUS = "cpp";
         public static final String C = "c";
-        public static final String EXPERIENCE = "experience";
-        public static final String SCHOOL = "school";
+        public static final String EXPERIENCE = "xp";
+        public static final String SCHOOL = "schoolName";
+        public static final String SCHOOL_GRADE = "schoolGrade";
     }
 
 

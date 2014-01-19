@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -192,6 +193,7 @@ public class BootstrapService {
             Log.w(Constants.IMeetapp.Log, "Getting users:");
             Log.w(Constants.IMeetapp.Log, "User Response = " + GSON.toJson(response));
             if (response != null && response.results != null) {
+                MatchingUtils.setUserList((ArrayList<User>) response.results);
                 return response.results;
             }
             return Collections.emptyList();
