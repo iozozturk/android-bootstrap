@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.Constants;
@@ -28,7 +30,6 @@ public class PreferenceListAdapter extends BaseAdapter {
     PreferenceListAdapter(Activity activity, List<Preference> preferenceList) {
         inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.preferenceList = preferenceList;
-        Log.d(Constants.IMeetapp.Log, "Preference List Adapter constructed...");
     }
 
     @Override
@@ -48,17 +49,20 @@ public class PreferenceListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Log.d(Constants.IMeetapp.Log, "Building Preference view..");
         final View vi;
         if (convertView == null)
             vi = inflater.inflate(R.layout.social_list_item, null); // create layout from
         else
             vi = convertView;
         TextView textLabel = null; // preference name
-        SeekBar prefcontrol = null;
+        final SeekBar prefcontrol ;
+        ToggleButton prefereceToggle = null;
         if (vi != null) {
             textLabel = (TextView) vi.findViewById(R.id.social_item_title);
             prefcontrol = (SeekBar) vi.findViewById(R.id.social_item_seekbar);
+            prefereceToggle = (ToggleButton) vi.findViewById(R.id.social_item_toggle);
+        }else{
+            prefcontrol = null;
         }
         Preference preference = preferenceList.get(position);
 
@@ -66,6 +70,17 @@ public class PreferenceListAdapter extends BaseAdapter {
             textLabel.setText(preference.getName());
         }
         if (prefcontrol != null) {
+            prefereceToggle.setId(R.id.TOGGLE +10 +  position);
+            prefereceToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (!isChecked){
+                        prefcontrol.setEnabled(false);
+                    }else{
+                        prefcontrol.setEnabled(true);
+                    }
+                }
+            });
             prefcontrol.setProgress(preference.getVal());
             prefcontrol.setId(R.id.SEEKBAR + position);
             prefcontrol.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -87,13 +102,11 @@ public class PreferenceListAdapter extends BaseAdapter {
 
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
-                    if (vi.getContext() != null)
-                        Toast.makeText(vi.getContext(), "Value changed to" + progress, Toast.LENGTH_SHORT).show();
+                   // if (vi.getContext() != null)
+                      //  Toast.makeText(vi.getContext(), "Value changed to" + progress, Toast.LENGTH_SHORT).show();
                 }
             });
         }
-        String isViewNull = vi != null ? "view is not null" : "view is null";
-        Log.d(Constants.IMeetapp.Log, "Returning Preference view for " + preference.getName() + " and " + isViewNull);
         return vi;
     }
 }

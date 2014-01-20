@@ -21,13 +21,23 @@
             android:textColor="@color/abc_search_url_text_selected"
             android:id="@+id/social_item_title" />
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:measureWithLargestChild="true"
+            android:gravity="right">
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="21dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="value"
+            android:text="0"
             android:id="@+id/social_item_value"
-            android:layout_marginLeft="40dp" />
+            android:layout_marginLeft="40dp"
+            android:layout_gravity="right"
+            android:textAlignment="gravity" />
+            </LinearLayout>
     </LinearLayout>
 
     <TableRow

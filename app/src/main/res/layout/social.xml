@@ -20,7 +20,7 @@
         android:layout_height="378dp"
         android:id="@+id/social_list_view"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.31"
+        android:layout_weight="0.77"
         style="@style/ListView"/>
 
     <Button

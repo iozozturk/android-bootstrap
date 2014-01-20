@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.donnfelker.android.bootstrap.BootstrapServiceProvider;
 import com.donnfelker.android.bootstrap.R;
@@ -41,14 +42,15 @@ public class SocialActivity extends BootstrapActivity {
         setTitle(R.string.social);
 
         final List<Preference> preferenceList = new ArrayList<Preference>();
-        preferenceList.add(new Preference(Constants.IMeetapp.JAVA, 3, 5));
-        preferenceList.add(new Preference(Constants.IMeetapp.C, 3, 5));
-        preferenceList.add(new Preference(Constants.IMeetapp.CPLUSPLUS, 3, 5));
-        preferenceList.add(new Preference(Constants.IMeetapp.EXPERIENCE, 3, 5));
-        preferenceList.add(new Preference(Constants.IMeetapp.SCHOOL_GRADE, 3, 5));
+        preferenceList.add(new Preference(Constants.IMeetapp.JAVA, 0, 5));
+        preferenceList.add(new Preference(Constants.IMeetapp.C, 0, 5));
+        preferenceList.add(new Preference(Constants.IMeetapp.CPLUSPLUS, 0, 5));
+        preferenceList.add(new Preference(Constants.IMeetapp.EXPERIENCE, 0, 5));
+        preferenceList.add(new Preference(Constants.IMeetapp.SCHOOL_GRADE, 0, 5));
 
         ListView customListView = (ListView) findViewById(R.id.social_list_view);
         Button goButton = (Button) findViewById(R.id.buttonGo);
+
         PreferenceListAdapter preferenceListAdapter = new PreferenceListAdapter(this, preferenceList);
         customListView.setAdapter(preferenceListAdapter);
 
@@ -58,36 +60,14 @@ public class SocialActivity extends BootstrapActivity {
             public void onClick(View v) {
                 Map<String, Integer> values = getValues();
                 HashMap<Character, List<User>> matchedUsers = new HashMap<Character, List<User>>();
-                List<User> euclideanMatchedUsers = new ArrayList<User>();
-                List<User> manhattanMatchedUsers = new ArrayList<User>();
-                List<User> mahalanobisMatchedUsers = new ArrayList<User>();
 
                 try {
                     matchedUsers = MatchingUtils.matchUsers(values);
-                    euclideanMatchedUsers = matchedUsers.get(MatchingUtils.EUCLIDEAN);
-                    manhattanMatchedUsers = matchedUsers.get(MatchingUtils.MANHATTAN);
-                    mahalanobisMatchedUsers = matchedUsers.get(MatchingUtils.MAHALANOBIS);
-                    Log.d(Constants.IMeetapp.Log, "Matched euclidean users list " +
-                            euclideanMatchedUsers.get(0).getDistance() +
-                            euclideanMatchedUsers.get(1).getDistance() +
-                            euclideanMatchedUsers.get(2).getDistance() +
-                            euclideanMatchedUsers.get(3).getDistance() +
-                            euclideanMatchedUsers.get(4).getDistance()
-                    );
-                    Log.d(Constants.IMeetapp.Log, "Matched manhattan users list " +
-                            manhattanMatchedUsers.get(0).getDistance() +
-                            manhattanMatchedUsers.get(1).getDistance() +
-                            manhattanMatchedUsers.get(2).getDistance() +
-                            manhattanMatchedUsers.get(3).getDistance() +
-                            manhattanMatchedUsers.get(4).getDistance()
-                    );
-                    Log.d(Constants.IMeetapp.Log, "Matched mahalaoobis users list size: " + mahalanobisMatchedUsers.size());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
                 startActivity(new Intent(v.getContext(), MatchedUsersActivity.class).putExtra(Constants.IMeetapp.USERS, matchedUsers));
-                Toast.makeText(getApplicationContext(), values.toString(), Toast.LENGTH_SHORT).show();
             }
 
             public Map<String, Integer> getValues() {
@@ -95,7 +75,8 @@ public class SocialActivity extends BootstrapActivity {
                 for (int i = 0; i < 5; ++i) {
                     SeekBar seekbar = (SeekBar) findViewById(R.id.SEEKBAR + i);
                     int progress = seekbar.getProgress();
-                    values.put(preferenceList.get(i).getName(), progress);
+                    if (seekbar.isEnabled())
+                        values.put(preferenceList.get(i).getName(), progress);
                 }
                 return values;
             }

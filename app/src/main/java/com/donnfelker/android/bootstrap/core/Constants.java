@@ -58,7 +58,7 @@ public final class Constants {
         /**
          * List News URL
          */
-        public static final String URL_NEWS = URL_BASE + "/1/classes/News";
+        public static final String URL_NEWS = URL_BASE + "/1/classes/news";
 
         /**
          * List Checkin's URL

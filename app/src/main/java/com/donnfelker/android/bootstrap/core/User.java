@@ -1,5 +1,6 @@
 package com.donnfelker.android.bootstrap.core;
 
+import android.support.v7.appcompat.R;
 import android.text.TextUtils;
 
 import java.io.Serializable;
@@ -36,7 +37,7 @@ public class User implements Serializable {
     }
 
     protected String email;
-    protected Map technical;
+    protected Map<String, Object> technical;
     protected String isMale;
     protected double distance;
 
@@ -58,7 +59,7 @@ public class User implements Serializable {
     }
 
 
-    public Map getTechnical() {
+    public Map<String, Object> getTechnical() {
         return technical;
     }
 

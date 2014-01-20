@@ -27,45 +27,45 @@ public class MatchingUtils {
         MatchingUtils.userList = userList;
     }
 
-    private static int[] convertPreferenceListToArray(Map preferenceList) {
+    private static int[] convertPreferenceListToArray(Map<String, Integer> preferenceMap) {
         int[] result = new int[Constants.IMeetapp.PREFERENCE_COUNT];
-        result[0] = (Integer) preferenceList.get(Constants.IMeetapp.JAVA);
-        result[1] = (Integer) preferenceList.get(Constants.IMeetapp.C);
-        result[2] = (Integer) preferenceList.get(Constants.IMeetapp.CPLUSPLUS);
-        result[3] = (Integer) preferenceList.get(Constants.IMeetapp.EXPERIENCE);
-        result[4] = (Integer) preferenceList.get(Constants.IMeetapp.SCHOOL_GRADE);
+        int i = 0;
+        for (String key : preferenceMap.keySet()) {
+            result[i] = preferenceMap.get(key);
+            i++;
+        }
         return result;
     }
 
-    private static int[] convertUserToArray(User user) {
+    private static int[] convertUserToArray(User user, Map<String, Integer> preferenceMap) {
         int[] result = new int[Constants.IMeetapp.PREFERENCE_COUNT];
-        Map technical = user.getTechnical();
-        result[0] = Integer.parseInt((String) technical.get(Constants.IMeetapp.JAVA));
-        result[1] = Integer.parseInt((String) technical.get(Constants.IMeetapp.C));
-        result[2] = Integer.parseInt((String) technical.get(Constants.IMeetapp.CPLUSPLUS));
-        result[3] = Integer.parseInt((String) technical.get(Constants.IMeetapp.EXPERIENCE));
-        result[4] = Integer.parseInt((String) technical.get(Constants.IMeetapp.SCHOOL_GRADE));
+        Map<String, Object> technical = user.getTechnical();
+        int i = 0;
+        for (String key : preferenceMap.keySet()) {
+            result[i] = Integer.parseInt((String) technical.get(key));
+            i++;
+        }
         return result;
     }
 
-    public static HashMap<Character, List<User>> matchUsers(Map<String, Integer> preferenceList) throws IOException {
+    public static HashMap<Character, List<User>> matchUsers(Map<String, Integer> preferenceMap) throws IOException {
         Log.d(Constants.IMeetapp.Log, "Matching users with euclidean distance method");
-        Log.d(Constants.IMeetapp.Log, "USer List size: " + userList.size() + " preferenceList size: " + preferenceList.size());
+        Log.d(Constants.IMeetapp.Log, "USer List size: " + userList.size() + " preferenceList size: " + preferenceMap.size());
         Log.d(Constants.IMeetapp.Log, "USER LIST OK: USER TECHNICALS" + userList.get(1).getTechnical().toString());
-        Log.d(Constants.IMeetapp.Log, "USER LIST OK: PREFERENCE TECHNICALS" + preferenceList.toString());
-        Log.d(Constants.IMeetapp.Log, "CONVERTED TO " + Arrays.toString(convertUserToArray(userList.get(1))));
-        Log.d(Constants.IMeetapp.Log, "CONVERTED TO " + Arrays.toString(convertPreferenceListToArray(preferenceList)));
+        Log.d(Constants.IMeetapp.Log, "USER LIST OK: PREFERENCE TECHNICALS" + preferenceMap.toString());
+        Log.d(Constants.IMeetapp.Log, "USER TECHNICALS CONVERTED TO " + Arrays.toString(convertUserToArray(userList.get(1),preferenceMap)));
+        Log.d(Constants.IMeetapp.Log, "PREFERENCE TECHNICALS CONVERTED TO " + Arrays.toString(convertPreferenceListToArray(preferenceMap)));
 
         HashMap<Character, List<User>> matchedUsers = new HashMap<Character, List<User>>();
         matchedUsers.clear();
 
-        int[] preferenceTechnicals = convertPreferenceListToArray(preferenceList);
-        double distance = 100;
         euclideanUserList.clear();
         manhattanUserList.clear();
         mahalanobisUserList.clear();
+        int[] preferenceTechnicals = convertPreferenceListToArray(preferenceMap);
+        double distance = 100;
         for (User user : userList) {
-            int[] userTechnicals = convertUserToArray(user);
+            int[] userTechnicals = convertUserToArray(user, preferenceMap);
             try {
                 distance = DistanceUtils.euclideanDistance(preferenceTechnicals, userTechnicals);
                 user.setDistance(distance);
@@ -82,7 +82,7 @@ public class MatchingUtils {
         });
 
         for (User user : userList) {
-            int[] userTechnicals = convertUserToArray(user);
+            int[] userTechnicals = convertUserToArray(user, preferenceMap);
             try {
                 distance = DistanceUtils.manhattanDistance(preferenceTechnicals, userTechnicals);
                 user.setDistance(distance);
@@ -99,7 +99,7 @@ public class MatchingUtils {
         });
 
         for (User user : userList) {
-            int[] userTechnicals = convertUserToArray(user);
+            int[] userTechnicals = convertUserToArray(user, preferenceMap);
             try {
                 distance = DistanceUtils.mahalanobisDistance(preferenceTechnicals, userTechnicals);
                 user.setDistance(distance);
@@ -115,14 +115,14 @@ public class MatchingUtils {
             }
         });
 
-        euclideanUserList = euclideanUserList.subList(0,5);
-        manhattanUserList =  manhattanUserList.subList(0,5);
-        mahalanobisUserList = mahalanobisUserList.subList(0,5);
+        euclideanUserList = euclideanUserList.subList(0, 5);
+        manhattanUserList = manhattanUserList.subList(0, 5);
+        mahalanobisUserList = mahalanobisUserList.subList(0, 5);
 
 
-        matchedUsers.put(MatchingUtils.EUCLIDEAN,  euclideanUserList);
-        matchedUsers.put(MatchingUtils.MANHATTAN,  manhattanUserList);
-        matchedUsers.put(MatchingUtils.MAHALANOBIS,  mahalanobisUserList);
+        matchedUsers.put(MatchingUtils.EUCLIDEAN, euclideanUserList);
+        matchedUsers.put(MatchingUtils.MANHATTAN, manhattanUserList);
+        matchedUsers.put(MatchingUtils.MAHALANOBIS, mahalanobisUserList);
         return matchedUsers;
     }
 
