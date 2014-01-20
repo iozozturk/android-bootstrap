@@ -57,9 +57,13 @@ public class MatchingUtils {
         Log.d(Constants.IMeetapp.Log, "CONVERTED TO " + Arrays.toString(convertPreferenceListToArray(preferenceList)));
 
         HashMap<Character, List<User>> matchedUsers = new HashMap<Character, List<User>>();
+        matchedUsers.clear();
 
         int[] preferenceTechnicals = convertPreferenceListToArray(preferenceList);
         double distance = 100;
+        euclideanUserList.clear();
+        manhattanUserList.clear();
+        mahalanobisUserList.clear();
         for (User user : userList) {
             int[] userTechnicals = convertUserToArray(user);
             try {
