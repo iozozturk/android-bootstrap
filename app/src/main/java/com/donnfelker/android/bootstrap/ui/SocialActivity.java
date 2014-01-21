@@ -47,11 +47,21 @@ public class SocialActivity extends BootstrapActivity {
         preferenceList.add(new Preference(Constants.IMeetapp.CPLUSPLUS, 0, 5));
         preferenceList.add(new Preference(Constants.IMeetapp.EXPERIENCE, 0, 5));
         preferenceList.add(new Preference(Constants.IMeetapp.SCHOOL_GRADE, 0, 5));
+        preferenceList.add(new Preference(Constants.IMeetapp.MATLAB, 0, 5));
+        preferenceList.add(new Preference(Constants.IMeetapp.CUDA, 0, 5));
+        preferenceList.add(new Preference(Constants.IMeetapp.HTML, 0, 5));
+        preferenceList.add(new Preference(Constants.IMeetapp.JS, 0, 5));
+        preferenceList.add(new Preference(Constants.IMeetapp.XML, 0, 5));
+        preferenceList.add(new Preference(Constants.IMeetapp.PHP, 0, 5));
+        preferenceList.add(new Preference(Constants.IMeetapp.PYTHON, 0, 5));
+        preferenceList.add(new Preference(Constants.IMeetapp.CSS, 0, 5));
+        preferenceList.add(new Preference(Constants.IMeetapp.ENGLISH, 0, 5));
 
         ListView customListView = (ListView) findViewById(R.id.social_list_view);
         Button goButton = (Button) findViewById(R.id.buttonGo);
 
-        PreferenceListAdapter preferenceListAdapter = new PreferenceListAdapter(this, preferenceList);
+        Log.d(Constants.IMeetapp.Log, "PREF SIZE:" + preferenceList.size());
+        final PreferenceListAdapter preferenceListAdapter = new PreferenceListAdapter(this, preferenceList);
         customListView.setAdapter(preferenceListAdapter);
 
 
@@ -72,11 +82,13 @@ public class SocialActivity extends BootstrapActivity {
 
             public Map<String, Integer> getValues() {
                 Map<String, Integer> values = new HashMap<String, Integer>();
-                for (int i = 0; i < 5; ++i) {
-                    SeekBar seekbar = (SeekBar) findViewById(R.id.SEEKBAR + i);
-                    int progress = seekbar.getProgress();
-                    if (seekbar.isEnabled())
-                        values.put(preferenceList.get(i).getName(), progress);
+                Map<String, Integer> seekbarVal = preferenceListAdapter.getSeekbarVal();
+                Map<String, Boolean> toggleVal = preferenceListAdapter.getToggleVal();
+                for (String key : seekbarVal.keySet()) {
+                    if (toggleVal.containsKey(key))
+                        if (toggleVal.get(key) == true) {
+                            values.put(key, seekbarVal.get(key));
+                        }
                 }
                 return values;
             }

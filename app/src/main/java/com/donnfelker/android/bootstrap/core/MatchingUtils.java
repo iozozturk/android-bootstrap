@@ -39,10 +39,10 @@ public class MatchingUtils {
 
     private static int[] convertUserToArray(User user, Map<String, Integer> preferenceMap) {
         int[] result = new int[Constants.IMeetapp.PREFERENCE_COUNT];
-        Map<String, Object> technical = user.getTechnical();
+        Map<String, Integer> technical = user.getTechnical();
         int i = 0;
         for (String key : preferenceMap.keySet()) {
-            result[i] = Integer.parseInt((String) technical.get(key));
+            result[i] =  technical.get(key);
             i++;
         }
         return result;

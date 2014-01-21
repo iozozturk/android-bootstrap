@@ -53,7 +53,7 @@ public final class Constants {
         /**
          * List Users URL
          */
-        public static final String URL_USERS = URL_BASE + "/1/classes/actual";//TODO Change
+        public static final String URL_USERS = URL_BASE + "/1/classes/users";//TODO Change
 
         /**
          * List News URL
@@ -81,7 +81,7 @@ public final class Constants {
         public static final String Log = "com.ismet.app.meetapp";
 
         public static final String PREFERENCES = "preferences";
-        public static final int PREFERENCE_COUNT = 5;
+        public static final int PREFERENCE_COUNT = 14;
 
         public static final String USERS = "users";
 
@@ -92,6 +92,15 @@ public final class Constants {
         public static final String EXPERIENCE = "xp";
         public static final String SCHOOL = "schoolName";
         public static final String SCHOOL_GRADE = "schoolGrade";
+        public static final String MATLAB = "matlab";
+        public static final String CUDA = "cuda";
+        public static final String HTML = "html";
+        public static final String JS = "js";
+        public static final String XML = "xml";
+        public static final String PHP = "php";
+        public static final String PYTHON = "python";
+        public static final String CSS = "css";
+        public static final String ENGLISH = "english";
     }
 
 

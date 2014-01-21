@@ -25,6 +25,15 @@ public class UserActivity extends BootstrapActivity {
     @InjectView(R.id.user_cplusplus_value) protected TextView user_cplusplus_value;
     @InjectView(R.id.user_java_value) protected TextView user_java_value;
     @InjectView(R.id.user_experience_value) protected TextView user_experience_value;
+    @InjectView(R.id.user_matlab_value) protected TextView user_matlab_value;
+    @InjectView(R.id.user_cuda_value) protected TextView user_cuda_value;
+    @InjectView(R.id.user_html_value) protected TextView user_html_value;
+    @InjectView(R.id.user_javascript_value) protected TextView user_javascript_value;
+    @InjectView(R.id.user_xml_value) protected TextView user_xml_value;
+    @InjectView(R.id.user_php_value) protected TextView user_php_value;
+    @InjectView(R.id.user_python_value) protected TextView user_python_value;
+    @InjectView(R.id.user_css_value) protected TextView user_css_value;
+    @InjectView(R.id.user_english_value) protected TextView user_english_value;
     @InjectView(R.id.user_schoolgrade_value) protected TextView user_schoolgrade_value;
 
     private User user;
@@ -46,17 +55,25 @@ public class UserActivity extends BootstrapActivity {
                 .placeholder(R.drawable.gravatar_icon)
                 .into(avatar);
 
-        Map technical = user.getTechnical();
+        Map<String,Integer> technical = user.getTechnical();
 
         user_name.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
         user_email.setText(user.getEmail());
-        user_school.setText((CharSequence) technical.get("schoolName"));
-        user_schoolgrade_value.setText((CharSequence) technical.get("schoolGrade"));
-        user_c_value.setText((CharSequence) technical.get("c"));
-        user_cplusplus_value.setText((CharSequence) technical.get("cpp"));
-        user_java_value.setText((CharSequence) technical.get("java"));
-        user_experience_value.setText((CharSequence) technical.get("xp"));
-
+        user_school.setText( user.getSchoolName());
+        user_schoolgrade_value.setText( technical.get("schoolGrade").toString());
+        user_c_value.setText( technical.get("c").toString());
+        user_cplusplus_value.setText( technical.get("cpp").toString());
+        user_java_value.setText( technical.get("java").toString());
+        user_experience_value.setText( technical.get("xp").toString());
+        user_matlab_value.setText( technical.get("matlab").toString());
+        user_cuda_value.setText( technical.get("cuda").toString());
+        user_html_value.setText( technical.get("html").toString());
+        user_javascript_value.setText( technical.get("js").toString());
+        user_xml_value.setText( technical.get("xml").toString());
+        user_php_value.setText( technical.get("php").toString());
+        user_python_value.setText( technical.get("python").toString());
+        user_css_value.setText( technical.get("css").toString());
+        user_english_value.setText( technical.get("english").toString());
     }
 
 

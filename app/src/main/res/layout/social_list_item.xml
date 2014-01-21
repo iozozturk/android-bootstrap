@@ -57,7 +57,7 @@
             android:id="@+id/social_item_seekbar"
             android:layout_weight="0.20"
             android:layout_gravity="center_vertical|right"
-            android:max="5"
+            android:max="100"
             android:indeterminate="false" />
     </TableRow>
 

@@ -20,6 +20,41 @@ public class User implements Serializable {
     protected String gravatarId;
     protected String avatarUrl;
 
+
+    protected String email;
+    protected String isMale;
+    protected String ismsc;
+    protected String schoolName;
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
+    }
+
+    public String getIsphd() {
+        return isphd;
+    }
+
+    public void setIsphd(String isphd) {
+        this.isphd = isphd;
+    }
+
+    public String getIsmsc() {
+        return ismsc;
+    }
+
+    public void setIsmsc(String ismsc) {
+        this.ismsc = ismsc;
+    }
+
+    protected String isphd;
+
+    protected double distance;
+    protected Map<String, Integer> technical;
+
     public String getIsMale() {
         return isMale;
     }
@@ -36,10 +71,6 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    protected String email;
-    protected Map<String, Object> technical;
-    protected String isMale;
-    protected double distance;
 
     public double getDistance() {
         return distance;
@@ -50,16 +81,24 @@ public class User implements Serializable {
     }
 
     public User() {
-        technical = new HashMap<String, Object>();
-        technical.put(Constants.IMeetapp.C, new Preference(Constants.IMeetapp.C, 0, 5));
-        technical.put(Constants.IMeetapp.JAVA, new Preference(Constants.IMeetapp.JAVA, 0, 5));
-        technical.put(Constants.IMeetapp.CPLUSPLUS, new Preference(Constants.IMeetapp.CPLUSPLUS, 0, 5));
-        technical.put(Constants.IMeetapp.EXPERIENCE, new Preference(Constants.IMeetapp.EXPERIENCE, 0, 5));
-        technical.put(Constants.IMeetapp.SCHOOL, "");
+        technical = new HashMap<String, Integer>();
+        technical.put(Constants.IMeetapp.C, 0);
+        technical.put(Constants.IMeetapp.JAVA, 0);
+        technical.put(Constants.IMeetapp.CPLUSPLUS, 0);
+        technical.put(Constants.IMeetapp.EXPERIENCE, 0);
+        technical.put(Constants.IMeetapp.MATLAB, 0);
+        technical.put(Constants.IMeetapp.CSS, 0);
+        technical.put(Constants.IMeetapp.HTML,0);
+        technical.put(Constants.IMeetapp.CUDA, 0);
+        technical.put(Constants.IMeetapp.ENGLISH, 0);
+        technical.put(Constants.IMeetapp.XML,0);
+        technical.put(Constants.IMeetapp.PYTHON, 0);
+        technical.put(Constants.IMeetapp.JS,0);
+        technical.put(Constants.IMeetapp.SCHOOL_GRADE, 0);
     }
 
 
-    public Map<String, Object> getTechnical() {
+    public Map<String, Integer> getTechnical() {
         return technical;
     }
 
