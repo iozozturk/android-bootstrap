@@ -4,7 +4,7 @@ This repository contains the source code.
 
 MeetApp is a demo application demonstrating a recommendation system that finds employees for an employer based on his preferences as a proof of concept manner.
 
-Have a questions about MeetApp? Ping me with an email.
+Have a question about MeetApp? Ping me with an email.
 
   <img src="http://www.ceng.metu.edu.tr/~e1775923/meetapp/main.png">
   <img src="http://www.ceng.metu.edu.tr/~e1775923/meetapp/userdetails.png">
