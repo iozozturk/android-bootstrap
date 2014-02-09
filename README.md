@@ -1,4 +1,4 @@
-# Meetapp
+# MeetApp
 
 This repository contains the source code.
 
