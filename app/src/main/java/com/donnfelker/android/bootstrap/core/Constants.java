@@ -63,7 +63,7 @@ public final class Constants {
         /**
          * List Checkin's URL
          */
-        public static final String URL_CHECKINS = URL_BASE + "/1/classes/Locations";
+        public static final String URL_CHECKINS = URL_BASE + "/1/classes/checkins";
 
         public static final String PARSE_APP_ID = "r3M4SM1kw5Hm0QK5BQzoa11oXnT1EAxFW6XQojhh";
         public static final String PARSE_REST_API_KEY = "daNcA5UsgMFV2n37swJ5gbwZjkAQxAvDj9LcyGbK";
