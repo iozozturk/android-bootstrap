@@ -1,6 +1,24 @@
 
 package com.donnfelker.android.bootstrap.core;
 
+import android.util.Log;
+
+import com.donnfelker.android.bootstrap.util.Ln;
+import com.github.kevinsawicki.http.HttpRequest;
+import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParseException;
+import com.squareup.picasso.Loader;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.Reader;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import static com.donnfelker.android.bootstrap.core.Constants.Http.HEADER_PARSE_APP_ID;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.HEADER_PARSE_REST_API_KEY;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.PARSE_APP_ID;
@@ -9,38 +27,24 @@ import static com.donnfelker.android.bootstrap.core.Constants.Http.URL_CHECKINS;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.URL_NEWS;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.URL_USERS;
 
-import com.github.kevinsawicki.http.HttpRequest;
-import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonParseException;
-
-import java.io.IOException;
-import java.io.Reader;
-import java.util.Collections;
-import java.util.List;
-
 /**
  * Bootstrap API service
  */
 public class BootstrapService {
 
-    private UserAgentProvider userAgentProvider;
-
     /**
      * GSON instance to use for all request  with date format set up for proper parsing.
+     * <p/>
+     * You can also configure GSON with different naming policies for your API.
+     * Maybe your API is Rails API and all json values are lower case with an underscore,
+     * like this "first_name" instead of "firstName".
+     * You can configure GSON as such below.
+     * <p/>
+     *
+     * public static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd")
+     *         .setFieldNamingPolicy(LOWER_CASE_WITH_UNDERSCORES).create();
      */
     public static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-
-    /**
-     * You can also configure GSON with different naming policies for your API. Maybe your api is Rails
-     * api and all json values are lower case with an underscore, like this "first_name" instead of "firstName".
-     * You can configure GSON as such below.
-     *
-     * public static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd").setFieldNamingPolicy(LOWER_CASE_WITH_UNDERSCORES).create();
-     *
-     */
-
 
     /**
      * Read and connect timeout in milliseconds
@@ -49,19 +53,15 @@ public class BootstrapService {
 
 
     private static class UsersWrapper {
-
         private List<User> results;
     }
 
     private static class NewsWrapper {
-
         private List<News> results;
     }
 
     private static class CheckInWrapper {
-
         private List<CheckIn> results;
-
     }
 
     private static class JsonException extends IOException {
@@ -73,16 +73,16 @@ public class BootstrapService {
          *
          * @param cause
          */
-        public JsonException(JsonParseException cause) {
+        public JsonException(final JsonParseException cause) {
             super(cause.getMessage());
             initCause(cause);
         }
     }
 
-
     private final String apiKey;
     private final String username;
     private final String password;
+    private UserAgentProvider userAgentProvider;
 
     /**
      * Create bootstrap service
@@ -116,7 +116,7 @@ public class BootstrapService {
      * @return request
      * @throws IOException
      */
-    protected HttpRequest execute(HttpRequest request) throws IOException {
+    protected HttpRequest execute(final HttpRequest request) throws IOException {
         if (!configure(request).ok())
             throw new IOException("Unexpected response code: " + request.code());
         return request;
@@ -126,50 +126,54 @@ public class BootstrapService {
         request.connectTimeout(TIMEOUT).readTimeout(TIMEOUT);
         request.userAgent(userAgentProvider.get());
 
-        if(isPostOrPut(request))
-            request.contentType(Constants.Http.CONTENT_TYPE_JSON); // All PUT & POST requests to Parse.com api must be in JSON - https://www.parse.com/docs/rest#general-requests
+        if (isPostOrPut(request)) {
+            // All PUT & POST requests to Parse.com api must be in JSON
+            // https://www.parse.com/docs/rest#general-requests
+            request.contentType(Constants.Http.CONTENT_TYPE_JSON);
+        }
 
         return addCredentialsTo(request);
     }
 
-    private boolean isPostOrPut(HttpRequest request) {
+    private boolean isPostOrPut(final HttpRequest request) {
         return request.getConnection().getRequestMethod().equals(HttpRequest.METHOD_POST)
-               || request.getConnection().getRequestMethod().equals(HttpRequest.METHOD_PUT);
+                || request.getConnection().getRequestMethod().equals(HttpRequest.METHOD_PUT);
 
     }
 
-    private HttpRequest addCredentialsTo(HttpRequest request) {
+    private HttpRequest addCredentialsTo(final HttpRequest request) {
 
         // Required params for
-        request.header(HEADER_PARSE_REST_API_KEY, PARSE_REST_API_KEY );
+        request.header(HEADER_PARSE_REST_API_KEY, PARSE_REST_API_KEY);
         request.header(HEADER_PARSE_APP_ID, PARSE_APP_ID);
 
-        /**
-         * NOTE: This may be where you want to add a header for the api token that was saved when you
-         * logged in. In the bootstrap sample this is where we are saving the session id as the token.
-         * If you actually had received a token you'd take the "apiKey" (aka: token) and add it to the
-         * header or form values before you make your requests.
-          */
-
-        /**
-         * Add the user name and password to the request here if your service needs username or password for each
-         * request. You can do this like this:
+        /*
+         * NOTE: This may be where you want to add a header for the api token that was saved when
+         * you logged in. In the bootstrap sample this is where we are saving the session id as
+         * the token. If you actually had received a token you'd take the "apiKey" (aka: token)
+         * and add it to the header or form values before you make your requests.
+         *
+         * Add the user name and password to the request here if your service needs username or
+         * password for each request. You can do this like this:
          * request.basic("myusername", "mypassword");
          */
 
+        Log.d(Constants.IMeetapp.Log, "Request is ready: " + request.toString());
         return request;
     }
 
-    private <V> V fromJson(HttpRequest request, Class<V> target) throws IOException {
-        Reader reader = request.bufferedReader();
+    private <V> V fromJson(final HttpRequest request, final Class<V> target) throws IOException {
+        final Reader reader = request.bufferedReader();
         try {
             return GSON.fromJson(reader, target);
-        } catch (JsonParseException e) {
+        } catch (final JsonParseException e) {
             throw new JsonException(e);
         } finally {
             try {
-                reader.close();
-            } catch (IOException ignored) {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (final IOException ignored) {
                 // Ignored
             }
         }
@@ -183,12 +187,17 @@ public class BootstrapService {
      */
     public List<User> getUsers() throws IOException {
         try {
-            HttpRequest request = execute(HttpRequest.get(URL_USERS));
-            UsersWrapper response = fromJson(request, UsersWrapper.class);
-            if (response != null && response.results != null)
+            final HttpRequest request = execute(HttpRequest.get(URL_USERS + "?" +
+                    "" + URLEncoder.encode("limit=500", "UTF-8")));
+            final UsersWrapper response = fromJson(request, UsersWrapper.class);
+            Log.w(Constants.IMeetapp.Log, "Getting users:");
+            Log.w(Constants.IMeetapp.Log, "User Response = " + GSON.toJson(response));
+            if (response != null && response.results != null) {
+                MatchingUtils.setUserList((ArrayList<User>) response.results);
                 return response.results;
+            }
             return Collections.emptyList();
-        } catch (HttpRequestException e) {
+        } catch (final HttpRequestException e) {
             throw e.getCause();
         }
     }
@@ -201,12 +210,15 @@ public class BootstrapService {
      */
     public List<News> getNews() throws IOException {
         try {
-            HttpRequest request = execute(HttpRequest.get(URL_NEWS));
-            NewsWrapper response = fromJson(request, NewsWrapper.class);
-            if (response != null && response.results != null)
+            final HttpRequest request = execute(HttpRequest.get(URL_NEWS));
+            final NewsWrapper response = fromJson(request, NewsWrapper.class);
+            Log.w(Constants.IMeetapp.Log, "Getting news:");
+            Log.w(Constants.IMeetapp.Log, "News Response = " + GSON.toJson(response));
+            if (response != null && response.results != null) {
                 return response.results;
+            }
             return Collections.emptyList();
-        } catch (HttpRequestException e) {
+        } catch (final HttpRequestException e) {
             throw e.getCause();
         }
     }
@@ -219,12 +231,15 @@ public class BootstrapService {
      */
     public List<CheckIn> getCheckIns() throws IOException {
         try {
-            HttpRequest request = execute(HttpRequest.get(URL_CHECKINS));
-            CheckInWrapper response = fromJson(request, CheckInWrapper.class);
-            if (response != null && response.results != null)
+            final HttpRequest request = execute(HttpRequest.get(URL_CHECKINS));
+            final CheckInWrapper response = fromJson(request, CheckInWrapper.class);
+            Log.w(Constants.IMeetapp.Log, "Getting Checkins:");
+            Log.w(Constants.IMeetapp.Log, "Checkin Response = " + GSON.toJson(response));
+            if (response != null && response.results != null) {
                 return response.results;
+            }
             return Collections.emptyList();
-        } catch (HttpRequestException e) {
+        } catch (final HttpRequestException e) {
             throw e.getCause();
         }
     }

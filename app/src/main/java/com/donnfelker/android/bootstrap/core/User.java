@@ -1,11 +1,13 @@
 package com.donnfelker.android.bootstrap.core;
 
+import android.support.v7.appcompat.R;
 import android.text.TextUtils;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class User implements Serializable {
-
 
     private static final long serialVersionUID = -7495897652017488896L;
 
@@ -19,11 +21,96 @@ public class User implements Serializable {
     protected String avatarUrl;
 
 
+    protected String email;
+    protected String isMale;
+    protected String ismsc;
+    protected String schoolName;
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
+    }
+
+    public String getIsphd() {
+        return isphd;
+    }
+
+    public void setIsphd(String isphd) {
+        this.isphd = isphd;
+    }
+
+    public String getIsmsc() {
+        return ismsc;
+    }
+
+    public void setIsmsc(String ismsc) {
+        this.ismsc = ismsc;
+    }
+
+    protected String isphd;
+
+    protected double distance;
+    protected Map<String, Integer> technical;
+
+    public String getIsMale() {
+        return isMale;
+    }
+
+    public void setIsMale(String isMale) {
+        this.isMale = isMale;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    public User() {
+        technical = new HashMap<String, Integer>();
+        technical.put(Constants.IMeetapp.C, 0);
+        technical.put(Constants.IMeetapp.JAVA, 0);
+        technical.put(Constants.IMeetapp.CPLUSPLUS, 0);
+        technical.put(Constants.IMeetapp.EXPERIENCE, 0);
+        technical.put(Constants.IMeetapp.MATLAB, 0);
+        technical.put(Constants.IMeetapp.CSS, 0);
+        technical.put(Constants.IMeetapp.HTML,0);
+        technical.put(Constants.IMeetapp.CUDA, 0);
+        technical.put(Constants.IMeetapp.ENGLISH, 0);
+        technical.put(Constants.IMeetapp.XML,0);
+        technical.put(Constants.IMeetapp.PYTHON, 0);
+        technical.put(Constants.IMeetapp.JS,0);
+        technical.put(Constants.IMeetapp.SCHOOL_GRADE, 0);
+    }
+
+
+    public Map<String, Integer> getTechnical() {
+        return technical;
+    }
+
+    public void setTechnical(Map technical) {
+        this.technical = technical;
+    }
+
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(final String username) {
         this.username = username;
     }
 
@@ -31,7 +118,7 @@ public class User implements Serializable {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(final String phone) {
         this.phone = phone;
     }
 
@@ -39,7 +126,7 @@ public class User implements Serializable {
         return objectId;
     }
 
-    public void setObjectId(String objectId) {
+    public void setObjectId(final String objectId) {
         this.objectId = objectId;
     }
 
@@ -55,7 +142,7 @@ public class User implements Serializable {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
@@ -63,7 +150,7 @@ public class User implements Serializable {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 

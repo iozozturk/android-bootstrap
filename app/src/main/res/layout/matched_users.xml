@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/matched_users_layout"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/matched_users_euclidean"
+        android:textColor="#ff474747"
+        android:id="@+id/matched_users_euclidean"
+        android:layout_gravity="center_horizontal" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="162dp"
+        android:id="@+id/matched_users_euclidean_list_view"
+        android:layout_gravity="center_horizontal"
+        style="@style/ListView"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/matched_users_manhattan"
+        android:textColor="#ff474747"
+        android:id="@+id/matched_users_manhattan"
+        android:layout_gravity="center_horizontal" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="165dp"
+        android:id="@+id/matched_users_manhattan_list_view"
+        android:layout_gravity="center_horizontal"
+        style="@style/ListView"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/matched_users_mahalanobis"
+        android:textColor="#ff474747"
+        android:id="@+id/matched_users_mahalanobis"
+        android:layout_gravity="center_horizontal" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/matched_users_mahalanobis_list_view"
+        android:layout_gravity="center_horizontal"
+        style="@style/ListView"/>
+
+
+</LinearLayout>
